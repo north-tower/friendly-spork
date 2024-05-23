@@ -5,7 +5,7 @@ import { Fragment, useState } from "react";
 import { Bars3Icon , ChatBubbleLeftIcon, HomeIcon, ArrowTrendingUpIcon,
     PaperAirplaneIcon,
     ChevronDownIcon, ArrowTrendingDownIcon,PresentationChartLineIcon,
-    PhoneIcon, PlayCircleIcon,BanknotesIcon,
+    PhoneIcon, PlayCircleIcon,BanknotesIcon,ChartPieIcon,ClipboardDocumentCheckIcon,PlusIcon,PuzzlePieceIcon,
      XMarkIcon} from "@heroicons/react/24/solid";
 import { Dialog, Disclosure, Popover, Transition } from
  "@headlessui/react"
@@ -65,16 +65,16 @@ function Header() {
     const products3 = [
         {
             name: "Add Bugdet",
-            description: "Get a better understanding of your traffic",
+            description: "Plan Ahead: Easily Set and Manage Your Budget",
             href: "/addBudget",
-            icon: ArrowTrendingUpIcon, 
+            icon: ChartPieIcon, 
 
         },
         {
             name: "Budgets",
-            description: "Speak directly to your customers",
+            description: "Smart Spending: Streamline Your Finances with Personalized Budgets",
             href: "/budget",
-            icon: PaperAirplaneIcon
+            icon: ClipboardDocumentCheckIcon
         },
         // {
         //     name: "Contact our support team",
@@ -89,14 +89,14 @@ function Header() {
             name: "Add Invoice",
             description: "Get a better understanding of your traffic",
             href: "/invoice",
-            icon: ArrowTrendingUpIcon, 
+            icon: PlusIcon, 
 
         },
         {
             name: "Invoices",
             description: "Speak directly to your customers",
             href: "#",
-            icon: PaperAirplaneIcon
+            icon: PuzzlePieceIcon
         },
         // {
         //     name: "Contact our support team",
