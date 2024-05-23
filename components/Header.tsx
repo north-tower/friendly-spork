@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Fragment, useState } from "react";
 import { Bars3Icon , ChatBubbleLeftIcon, HomeIcon, ArrowTrendingUpIcon,
     PaperAirplaneIcon,
-    ChevronDownIcon, 
-    PhoneIcon, PlayCircleIcon,
+    ChevronDownIcon, ArrowTrendingDownIcon,PresentationChartLineIcon,
+    PhoneIcon, PlayCircleIcon,BanknotesIcon,
      XMarkIcon} from "@heroicons/react/24/solid";
 import { Dialog, Disclosure, Popover, Transition } from
  "@headlessui/react"
@@ -20,16 +20,16 @@ function Header() {
     const products = [
         {
             name: "Add Income",
-            description: "Get a better understanding of your traffic",
+            description: "Boost Your Earnings: Seamlessly Add and Track Income",
             href: "/addIncome",
             icon: ArrowTrendingUpIcon, 
 
         },
         {
             name: "Income",
-            description: "Speak directly to your customers",
+            description: "Effortless Income Tracking: Your Simple Solution for Smarter Bookkeeping",
             href: "/income",
-            icon: PaperAirplaneIcon
+            icon: BanknotesIcon
         },
         // {
         //     name: "Contact our support team",
@@ -43,16 +43,16 @@ function Header() {
     const products2 = [
         {
             name: "Add Expense",
-            description: "Get a better understanding of your traffic",
+            description: "Track Every Penny: Easily Add and Monitor Expenses",
             href: "/addExpenses",
-            icon: ArrowTrendingUpIcon, 
+            icon: ArrowTrendingDownIcon, 
 
         },
         {
             name: "Expense",
-            description: "Speak directly to your customers",
+            description: "Manage Your Money: Effortlessly Track and Categorize Expenses",
             href: "/expenses",
-            icon: PaperAirplaneIcon
+            icon: PresentationChartLineIcon
         },
         // {
         //     name: "Contact our support team",
