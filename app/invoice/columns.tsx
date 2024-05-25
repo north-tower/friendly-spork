@@ -29,30 +29,36 @@ export type Invoice = {
 export const columns: ColumnDef<Invoice>[] = [
  
       {
-        accessorKey: "uuid",
-        header: "Uuid",
+        accessorKey: "timestamp",
+        header: "Timestamp",
       },
+      {
+        accessorKey: "name",
+        header: "Customer Name",
+       },
       {
         accessorKey: "description",
         header: "Description",
-      },    
+      },   
       {
-        accessorKey: "name",
-        header: "Name",
-       },
-        {
-            accessorKey: "amount",
-            header: () => <div className="text-right">Amount</div>,
-            cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
-            const formatted = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "KES",
-            }).format(amount)
-        
-            return <div className="text-right font-medium">{formatted}</div>
-            },
+        accessorKey: "amount",
+        header: () => <div className="text-right">Amount</div>,
+        cell: ({ row }) => {
+        const amount = parseFloat(row.getValue("amount"))
+        const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "KES",
+        }).format(amount)
+    
+        return <div className="text-right font-medium">{formatted}</div>
         },
+    }, 
+    
+       {
+        accessorKey: "status",
+        header: "Status",
+       },
+    
   {
     id: "select",
     header: ({ table }) => (
@@ -92,18 +98,20 @@ export const columns: ColumnDef<Invoice>[] = [
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem
       onClick={async () => {
+        console.log(invoice.id)
+
         try {
         
           // Perform the PUT request
-          const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateIncome/${invoice.id}`);
-    
+          const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateInvoice/${invoice.id}`);
     
           // Redirect to a new URL if the PUT request was successful
-          console.log('Expense updated successfully');
+          window.alert('Invoice updated successfully');
+
           window.location.reload();
         } catch (error) {
-          console.error('Failed to update expense:', error);
-          alert('Failed to update expense. Please try again.');
+          console.error('Failed to update invoice:', error);
+          alert('Failed to update invoice. Please try again.');
         }
       }
       }
