@@ -88,14 +88,14 @@ function Header() {
         {
             name: "Add Invoice",
             description: "Get a better understanding of your traffic",
-            href: "/invoice",
+            href: "/addInvoice",
             icon: PlusIcon, 
 
         },
         {
             name: "Invoices",
             description: "Speak directly to your customers",
-            href: "#",
+            href: "/invoice",
             icon: PuzzlePieceIcon
         },
         // {
