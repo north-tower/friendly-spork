@@ -106,7 +106,7 @@ function Page() {
     fetchData().then(setData);
   }, []); 
 
-  console.log(data)
+  
 
 
 

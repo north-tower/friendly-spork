@@ -110,25 +110,24 @@ export const columns: ColumnDef<Budget>[] = [
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem
-      onClick={async () => {
-        try {
+      // onClick={async () => {
+      //   try {
         
-          // Perform the PUT request
-          const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateIncome/${budget.id}`);
+      //     // Perform the PUT request
+      //     const response = await axios.put(`https://supreme-goggles-beta.vercel.app/api/v1/updateIncome/${budget.id}`);
     
     
-          // Redirect to a new URL if the PUT request was successful
-          console.log('Expense updated successfully');
-          window.location.reload();
-        } catch (error) {
-          console.error('Failed to update expense:', error);
-          alert('Failed to update expense. Please try again.');
-        }
-      }
-      }
+      //     // Redirect to a new URL if the PUT request was successful
+      //     console.log('Expense updated successfully');
+      //     window.location.reload();
+      //   } catch (error) {
+      //     console.error('Failed to update expense:', error);
+      //     alert('Failed to update expense. Please try again.');
+      //   }
+      // }
+      // }
     >
-      Approve
-    </DropdownMenuItem>
+      Delete    </DropdownMenuItem>
     
     
     
