@@ -31,6 +31,20 @@ interface Category {
   budget: string;
 }
 
+async function fetchData() {
+  try {
+    const response = await fetch('https://supreme-goggles-beta.vercel.app/api/v1/getBudget');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data: Categories[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch data:', error);
+    return [];
+  }
+}
+
 function Page() {
 
   const [newExpenses, setNewExpenses] = useState<Expenses>({id: '', description: '', amount: 0, status:'' , category: '', email:''});
@@ -75,9 +89,10 @@ function Page() {
     try {
       await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addCategory', newCategory);
       // Display success message
-      window.alert('Expense added successfully');
+      window.alert('Expense Category added successfully');
       // Redirect to Drivers page
-            router.push('/addIncome'); // Redirect to the Drivers page
+      window.location.reload();
+
 
    
     } catch (error) {
@@ -85,30 +100,20 @@ function Page() {
     }
   };
 
-
+  const [data, setData] = useState<Categories[]>([]);
 
   useEffect(() => {
-    const fetchData2 = async () => {
-      try {
-        const response = await fetch('/api2'); // Adjust the URL as necessary
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setCategories(result.data);
-       console.log(result.data[0])
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-  
+    fetchData().then(setData);
+  }, []); 
 
-    fetchData2();
-  }, []);
+  console.log(data)
+
+
 
   return (
     <div>
         
+        <div className="sm:w-[38rem] mx-auto my-10 overflow-hidden rounded-2xl bg-white sm:max-w-lg">
 
        <Popover>
             <PopoverTrigger>Add Expense Category</PopoverTrigger>
@@ -142,7 +147,8 @@ function Page() {
 
             </div>
             </PopoverContent>
-          </Popover>           
+          </Popover>         
+          </div>  
         
 
 
@@ -178,9 +184,9 @@ function Page() {
                    value={newExpenses.category}
                    onChange={handleInputChange} > 
                    
-                   {categories.map((categories) => (
+                   {data.map((data) => (
 
-                    <option key={categories.name} value={categories.name}>{categories.name}</option>
+                    <option key={data.name} value={data.name}>{data.name}</option>
                   ))}
                   </select>
         </label>
