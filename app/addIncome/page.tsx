@@ -15,13 +15,26 @@ export type Income = {
 };
 
 export type Categories = {
-  id: string;
+  uuid: string;
   name: string;
 };
 
 interface Category {
   id: string;
   name: string;
+}
+async function fetchData() {
+  try {
+    const response = await fetch('https://supreme-goggles-beta.vercel.app/api/v1/getIncomeCat');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data: Categories[] = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch data:', error);
+    return [];
+  }
 }
 
 function Page() {
@@ -67,28 +80,20 @@ function Page() {
       console.error('Error adding new driver:', error);
     }
   };
+  const [data, setData] = useState<Categories[]>([]);
 
   useEffect(() => {
-    const fetchData2 = async () => {
-      try {
-        const response = await fetch('/api2'); // Adjust the URL as necessary
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setCategories(result.data);
-        console.log(result.data[0]);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+    fetchData().then(setData);
+  }, []); 
 
-    fetchData2();
-  }, []);
+  console.log(data)
+
 
   return (
+ 
     <div>
-      <Popover>
+      <div className="sm:w-[38rem] mx-auto my-10 overflow-hidden rounded-2xl bg-white sm:max-w-lg">
+      <Popover >
         <PopoverTrigger>Add Income Category</PopoverTrigger>
         <PopoverContent>
           <p className="mt-4 pl-4 text-xl font-bold">Add Category</p>
@@ -113,6 +118,9 @@ function Page() {
           </div>
         </PopoverContent>
       </Popover>
+
+      </div>
+     
       <div className="sm:w-[38rem] mx-auto my-10 overflow-hidden rounded-2xl bg-white shadow-lg sm:max-w-lg">
         <div className="bg-blue-800 px-10 py-10 text-center text-white">
           <p className="font-serif text-2xl font-semibold tracking-wider">Submit your income</p>
@@ -151,9 +159,9 @@ function Page() {
                 value={newIncome.category}
                 onChange={handleInputChange}
               >
-                {categories.map((category) => (
-                  <option key={category.id} value={category.name}>
-                    {category.name}
+                {data.map((data) => (
+                  <option key={data.uuid} value={data.name}>
+                    {data.name}
                   </option>
                 ))}
               </select>
