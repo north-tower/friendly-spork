@@ -98,7 +98,7 @@ export const columns: ColumnDef<Invoice>[] = [
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuItem
       onClick={async () => {
-        console.log(invoice.id)
+      
 
         try {
         
@@ -116,7 +116,7 @@ export const columns: ColumnDef<Invoice>[] = [
       }
       }
     >
-      Approve
+      Pay
     </DropdownMenuItem>
     
     
