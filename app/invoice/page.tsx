@@ -11,6 +11,7 @@ async function fetchData() {
       throw new Error('Network response was not ok');
     }
     const data: Invoice[] = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
     console.error('Failed to fetch data:', error);
