@@ -27,51 +27,41 @@ export type Budget = {
 export const columns: ColumnDef<Budget>[] = [
  
       {
-        accessorKey: "uuid",
-        header: "Uuid",
+        accessorKey: "category",
+        header: "Expense Category",
+      }, 
+
+      {
+        accessorKey: "totalExpenses",
+        header: () => <div className="text-right">Total Expenses</div>,
+        cell: ({ row }) => {
+          const tot = parseFloat(row.getValue("totalExpenses"))
+          const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "KES",
+          }).format(tot)
+    
+          return <div className="text-right font-medium">{formatted}</div>
+        },
       },
       {
-        accessorKey: "name",
-        header: "Name",
-      },
-     
-    //   {
-    //     accessorKey: "budget",
-    //     header: "Budget",
-    //   },
+        accessorKey: "budget",
+        header: () => <div className="text-right">Budget</div>,
+        cell: ({ row }) => {
+          const budget = parseFloat(row.getValue("budget"))
+          const formatted = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "KES",
+          }).format(budget)
     
-//   {
-//     accessorKey: "status",
-//     header: "Status",
-//   },
-
-//   {
-//     accessorKey: "email",
-//     header: ({ column }) => {
-//         return (
-//           <Button
-//             variant="ghost"
-//             onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//           >
-//             Email
-//             <ArrowUpDown className="ml-2 h-4 w-4" />
-//           </Button>
-//         )
-//       },
-//   },
-  {
-    accessorKey: "budget",
-    header: () => <div className="text-right">Budget</div>,
-    cell: ({ row }) => {
-      const budget = parseFloat(row.getValue("budget"))
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "KES",
-      }).format(budget)
- 
-      return <div className="text-right font-medium">{formatted}</div>
-    },
-  },
+          return <div className="text-right font-medium">{formatted}</div>
+        },
+      },
+      {
+        accessorKey: "percentageUsed",
+        header: "Percentage Used",
+      }, 
+     
   {
     id: "select",
     header: ({ table }) => (

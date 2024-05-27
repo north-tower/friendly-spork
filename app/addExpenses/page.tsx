@@ -183,6 +183,7 @@ function Page() {
                    name="category"
                    value={newExpenses.category}
                    onChange={handleInputChange} > 
+                   <option>--Select Category</option>
                    
                    {data.map((data) => (
 

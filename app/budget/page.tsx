@@ -6,7 +6,7 @@ import { DataTable } from "./data-table"
 
 async function fetchData() {
   try {
-    const response = await fetch('https://supreme-goggles-beta.vercel.app/api/v1/getBudget');
+    const response = await fetch('https://supreme-goggles-beta.vercel.app/api/v1/getAllBudgetUsages');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
