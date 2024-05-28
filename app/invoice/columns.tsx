@@ -14,7 +14,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 
 // This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Invoice = {
   id: string;
   description: string;
@@ -30,16 +29,26 @@ export type Invoice = {
 export const columns: ColumnDef<Invoice>[] = [
   {
     accessorKey: "timestamp",
-    header: () => <div className="text-right">Timestamp</div>,
+    header: () => <div className="text-right">Date</div>,
     cell: ({ row }) => {
-      const timestamp = row.getValue("timestamp");
-      const milliseconds = timestamp._seconds * 1000 + Math.floor(timestamp._nanoseconds / 1000000);
-      const date = new Date(milliseconds);
-      const formatted = date.toLocaleString(); // or use date.toISOString() or a custom format
+      const timestamp: any = row.getValue("timestamp");
 
-      return <div className="text-right font-medium">{formatted}</div>;
+      if (
+        timestamp && 
+        typeof timestamp === "object" &&
+        typeof timestamp._seconds === "number" &&
+        typeof timestamp._nanoseconds === "number"
+      ) {
+        const milliseconds = timestamp._seconds * 1000 + Math.floor(timestamp._nanoseconds / 1000000);
+        const date = new Date(milliseconds);
+        const formattedDate = date.toLocaleDateString(); // Formats the date part only
+
+        return <div className="text-right font-medium">{formattedDate}</div>;
+      } else {
+        console.error("Invalid timestamp format", timestamp);
+        return <div className="text-right font-medium">Invalid date</div>;
+      }
     },
-  
   },
   {
     accessorKey: "name",
