@@ -31,12 +31,12 @@ function Header() {
             href: "/income",
             icon: BanknotesIcon
         },
-        // {
-        //     name: "Contact our support team",
-        //     description: "Your customers' data will safe and secure",
-        //     href: "#",
-        //     icon: ChatBubbleLeftIcon
-        // },
+        {
+            name: "Add Target",
+            description: "Achieve More: Set and Track Your Financial Targets",
+            href: "#",
+            icon: ChatBubbleLeftIcon
+        },
     ];
 
 
