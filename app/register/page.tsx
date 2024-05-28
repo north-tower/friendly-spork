@@ -23,11 +23,11 @@ function page() {
         </div>
        
         <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome to futurism!</h4>
-        <p className="mb-6 text-gray-500">Please sign-in to access your account</p>
+        <p className="mb-6 text-gray-500">Please enter details to create your account</p>
 
         <form id="" className="mb-4" action="#" method="POST">
           <div className="mb-4">
-            <label className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email or Username</label>
+            <label className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email</label>
             <input type="text" className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 
             text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" 
             placeholder="Enter your email or username"  />
@@ -45,22 +45,22 @@ function page() {
               name="password" placeholder="············" />
             </div>
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <div className="block">
               <input className="mt-1 mr-2 h-5 w-5 appearance-none rounded border border-gray-300 bg-contain bg-no-repeat align-top
                text-black shadow checked:bg-indigo-500 focus:border-indigo-500 focus:shadow" type="checkbox" id="remember-me" 
                 checked />
               <label className="inline-block"> Remember Me </label>
             </div>
-          </div>
+          </div> */}
           <div className="mb-4">
             <button className="grid w-full cursor-pointer select-none rounded-md border border-indigo-500 bg-indigo-500 py-2 px-5 text-center align-middle text-sm text-white shadow hover:border-indigo-600 hover:bg-indigo-600 hover:text-white focus:border-indigo-600 focus:bg-indigo-600 focus:text-white focus:shadow-none" type="submit">Sign in</button>
           </div>
         </form>
 
         <p className="mb-4 text-center">
-          New on futurism?
-          <a href="#" className="cursor-pointer text-indigo-500 no-underline hover:text-indigo-500"> Create an account </a>
+          Already on faAs?
+          <a href="#" className="cursor-pointer text-indigo-500 no-underline hover:text-indigo-500"> Sign in </a>
         </p>
       </div>
     </div>
