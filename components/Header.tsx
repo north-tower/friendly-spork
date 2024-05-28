@@ -5,7 +5,7 @@ import { Fragment, useState } from "react";
 import { Bars3Icon , ChatBubbleLeftIcon, HomeIcon, ArrowTrendingUpIcon,
     PaperAirplaneIcon,
     ChevronDownIcon, ArrowTrendingDownIcon,PresentationChartLineIcon,
-    PhoneIcon, PlayCircleIcon,BanknotesIcon,ChartPieIcon,ClipboardDocumentCheckIcon,PlusIcon,PuzzlePieceIcon,
+    PhoneIcon, PlayCircleIcon,BanknotesIcon,ChartPieIcon,ClipboardDocumentCheckIcon,PlusIcon,PuzzlePieceIcon,BellAlertIcon,
      XMarkIcon} from "@heroicons/react/24/solid";
 import { Dialog, Disclosure, Popover, Transition } from
  "@headlessui/react"
@@ -34,8 +34,8 @@ function Header() {
         {
             name: "Add Target",
             description: "Achieve More: Set and Track Your Financial Targets",
-            href: "#",
-            icon: ChatBubbleLeftIcon
+            href: "/targets",
+            icon: BellAlertIcon
         },
     ];
 
