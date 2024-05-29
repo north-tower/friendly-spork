@@ -5,7 +5,7 @@ import { FIREBASE_AUTH } from '@/FirebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from 'lucide-react';
-
+import { useRouter } from 'next/navigation';
 
 interface User {
   id: string,
@@ -17,13 +17,16 @@ function Page() {
   const auth = FIREBASE_AUTH;
   const [newUser, setNewUser] = useState<User>({ id: '', email: '', password: '' });
   const [alert, setAlert] = useState<{ show: boolean, message: string, type: string }>({ show: false, message: '', type: '' });
+  const router = useRouter(); // Initialize useRouter
 
   const signUp = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const response = await createUserWithEmailAndPassword(auth, newUser.email, newUser.password);
       console.log(response);
-      setAlert({ show: true, message: 'Registration successful!', type: 'success' });
+      window.alert("Registration Successful Proceed To Login" )
+      router.push('/'); // Redirect to the Drivers page
+
     } catch (error) {
       console.log(error);
       setAlert({ show: true, message: 'Registration failed. Please try again.', type: 'error' });
@@ -64,10 +67,10 @@ function Page() {
             <div className="flex-auto p-6">
               <div className="mb-10 flex flex-shrink-0 flex-grow-0 items-center justify-center overflow-hidden">
                 <a href="#" className="flex cursor-pointer items-center gap-2 text-indigo-500 no-underline hover:text-indigo-500">
-                  <span className="flex-shrink-0 text-3xl font-black lowercase tracking-tight opacity-100">Futurism.</span>
+                  <span className="flex-shrink-0 text-3xl font-black lowercase tracking-tight opacity-100">faAs.</span>
                 </a>
               </div>
-              <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome to futurism!</h4>
+              <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome to faAs</h4>
               <p className="mb-6 text-gray-500">Please enter details to create your account</p>
 
               <form className="mb-4" onSubmit={signUp}>
