@@ -28,10 +28,29 @@ export type Income = {
 
 export const columns: ColumnDef<Income>[] = [
  
-      {
-        accessorKey: "uuid",
-        header: "Uuid",
-      },
+  {
+    accessorKey: "createdAt",
+    header: () => <div className="text-right">Date</div>,
+    cell: ({ row }) => {
+      const createdAt: any = row.getValue("createdAt");
+
+      if (
+        createdAt && 
+        typeof createdAt === "object" &&
+        typeof createdAt._seconds === "number" &&
+        typeof createdAt._nanoseconds === "number"
+      ) {
+        const milliseconds = createdAt._seconds * 1000 + Math.floor(createdAt._nanoseconds / 1000000);
+        const date = new Date(milliseconds);
+        const formattedDate = date.toLocaleDateString(); // Formats the date part only
+
+        return <div className="text-right font-medium">{formattedDate}</div>;
+      } else {
+        console.error("Invalid timestamp format", createdAt);
+        return <div className="text-right font-medium">Invalid date</div>;
+      }
+    },
+  },
       {
         accessorKey: "description",
         header: "Description",

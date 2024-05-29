@@ -77,7 +77,7 @@ function Page() {
       window.alert('Income Category added successfully');
       router.push('/addIncome'); // Redirect to the Drivers page
     } catch (error) {
-      console.error('Error adding new driver:', error);
+      console.error('Error adding new income:', error);
     }
   };
   const [data, setData] = useState<Categories[]>([]);
@@ -86,7 +86,6 @@ function Page() {
     fetchData().then(setData);
   }, []); 
 
-  console.log(data)
 
 
   return (
@@ -159,6 +158,7 @@ function Page() {
                 value={newIncome.category}
                 onChange={handleInputChange}
               >
+                <option>--Select Category--</option>
                 {data.map((data) => (
                   <option key={data.uuid} value={data.name}>
                     {data.name}
