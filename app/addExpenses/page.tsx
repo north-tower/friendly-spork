@@ -72,7 +72,7 @@ function Page() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addDriver', newExpenses);
+      await axios.post('https://supreme-goggles-beta.vercel.app/api/v1/addExpense', newExpenses);
       // Display success message
       window.alert('Expense added successfully');
       // Redirect to Drivers page
