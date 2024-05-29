@@ -1,4 +1,5 @@
-import Link from 'next/link'
+'use client'
+
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { FIREBASE_AUTH } from '@/FirebaseConfig';
 import { useRouter } from 'next/navigation';
@@ -21,7 +22,7 @@ function Login() {
     try {
       const response = await signInWithEmailAndPassword(auth, newUser.email, newUser.password);
       console.log(response);
-      window.alert("Registration Successful Proceed To Login" )
+      window.alert("Login successful" )
       router.push('/dash'); // Redirect to the Drivers page
 
     } catch (error) {
