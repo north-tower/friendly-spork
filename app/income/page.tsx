@@ -41,86 +41,24 @@ export default function DemoPage() {
   return (
     <div>
       <div className="grid grid-cols-4 gap-4 container mx-auto py-5">
-  <div> <label className="block w-full">From:</label>
-      <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-[280px] justify-start text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover></div>
+        <div> 
+          <label className="block w-full">From:</label>
+          <input className="w-full rounded-md border bg-white py-2 px-2 outline-none ring-blue-600 focus:ring-1"
+                     
+                  type="date" placeholder="Enter Category Name" />
+        </div>
 
   <div>
   <label className="block w-full">To:</label>
-      <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-[280px] justify-start text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
+     
+  </div>
+  <div className='m-3'>
+  <button className="whitespace-nowrap rounded-md bg-blue-500 px-4 py-3 font-medium text-white">Fetch Data</button>
+
   </div>
 </div>
-      <div className='container mx-auto py-5'>
-       
-        
-      </div>
-      <div className='container mx-auto py-5'>
-        <label className="block w-full">From:</label>
-      <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-[280px] justify-start text-left font-normal",
-                !date && "text-muted-foreground"
-              )}
-            >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0">
-            <Calendar
-              mode="single"
-              selected={date}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
-        
-      </div>
+      
+      
        <div className="container mx-auto py-10">
       <DataTable columns={columns} data={data} />
     </div>

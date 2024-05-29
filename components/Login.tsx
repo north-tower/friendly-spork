@@ -27,6 +27,8 @@ function Login() {
 
     } catch (error) {
       console.log(error);
+      window.alert("Login unsuccessful please try again" )
+
       // setAlert({ show: true, message: 'Registration failed. Please try again.', type: 'error' });
     }
   }
