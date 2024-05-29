@@ -112,7 +112,7 @@ function Header() {
         <nav className="mx-auto flex max-w-7xl items-center
         justify-between p-6 lg:px-8" aria-label="Global">
             <div className="flex lg:flex-1">
-                <Link href="/" 
+                <Link href="/dash" 
                  className="-m-1.5 p-1.5 text-white">
                faAs
               
@@ -351,11 +351,7 @@ function Header() {
               
             </Popover.Group>
 
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" className="text-sm font-semibold leading-6 text-white">
-                    Log in <span aria-hidden="true">&rarr;</span>
-                </a>
-            </div>
+          
         </nav>
 
         <Dialog as="div"
@@ -368,7 +364,7 @@ function Header() {
             overflow-y-auto bg-[#013B94] px-6 py-6 sm:max-w-sm sm:ring-1
             sm:ring-gray-900/10">
                 <div className="flex items-center justify-between">
-                    <a href="#" className="-m-1.5 p-1.5 text-white">
+                    <a href="/dash" className="-m-1.5 p-1.5 text-white">
                         faAs
                       
                    

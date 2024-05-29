@@ -28,24 +28,24 @@ export type Invoice = {
 
 export const columns: ColumnDef<Invoice>[] = [
   {
-    accessorKey: "timestamp",
+    accessorKey: "createdAt",
     header: () => <div className="text-right">Date</div>,
     cell: ({ row }) => {
-      const timestamp: any = row.getValue("timestamp");
+      const createdAt: any = row.getValue("createdAt");
 
       if (
-        timestamp && 
-        typeof timestamp === "object" &&
-        typeof timestamp._seconds === "number" &&
-        typeof timestamp._nanoseconds === "number"
+        createdAt && 
+        typeof createdAt === "object" &&
+        typeof createdAt._seconds === "number" &&
+        typeof createdAt._nanoseconds === "number"
       ) {
-        const milliseconds = timestamp._seconds * 1000 + Math.floor(timestamp._nanoseconds / 1000000);
+        const milliseconds = createdAt._seconds * 1000 + Math.floor(createdAt._nanoseconds / 1000000);
         const date = new Date(milliseconds);
         const formattedDate = date.toLocaleDateString(); // Formats the date part only
 
         return <div className="text-right font-medium">{formattedDate}</div>;
       } else {
-        console.error("Invalid timestamp format", timestamp);
+        console.error("Invalid timestamp format", createdAt);
         return <div className="text-right font-medium">Invalid date</div>;
       }
     },
