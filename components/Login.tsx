@@ -1,7 +1,44 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
+import { FIREBASE_AUTH } from '@/FirebaseConfig';
+import { useRouter } from 'next/navigation';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+interface User {
+  id: string,
+  email: string,
+  password: string
+}
 
 function Login() {
+  const auth = FIREBASE_AUTH;
+  const [newUser, setNewUser] = useState<User>({ id: '', email: '', password: '' });
+  const router = useRouter(); // Initialize useRouter
+
+
+  const signIn = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await signInWithEmailAndPassword(auth, newUser.email, newUser.password);
+      console.log(response);
+      window.alert("Registration Successful Proceed To Login" )
+      router.push('/dash'); // Redirect to the Drivers page
+
+    } catch (error) {
+      console.log(error);
+      // setAlert({ show: true, message: 'Registration failed. Please try again.', type: 'error' });
+    }
+  }
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setNewUser(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+
   return (
     <div>
          <div>
@@ -27,11 +64,15 @@ function Login() {
         <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome to faAs!</h4>
         <p className="mb-6 text-gray-500">Please sign-in to access your account</p>
 
-        <form id="" className="mb-4" action="#" method="POST">
+        <form className="mb-4" onSubmit={signIn}>
           <div className="mb-4">
             <label className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email or Username</label>
             <input type="text" className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 
-            text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" 
+            text-sm outline-none focus:border-indigo-500 focus:bg-white 
+            focus:text-gray-600 focus:shadow" id="email"
+            name="email"
+            value={newUser.email}
+            onChange={handleInputChange}
             placeholder="Enter your email or username"  />
           </div>
           <div className="mb-4">
@@ -43,8 +84,12 @@ function Login() {
             </div>
             <div className="relative flex w-full flex-wrap items-stretch">
               <input type="password" id="password" className="relative block flex-auto cursor-text appearance-none rounded-md border 
-              border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" 
-              name="password" placeholder="············" />
+              border-gray-400 bg--100 py-2 px-3 text-sm outline-none 
+              focus:border-indigo-500 focus:bg-white focus:text-gray-600 
+              focus:shadow" 
+                  name="password"
+                    value={newUser.password}
+                    onChange={handleInputChange} placeholder="············" />
             </div>
           </div>
           <div className="mb-4">
@@ -56,11 +101,11 @@ function Login() {
             </div>
           </div>
           <div className="mb-4">
-            <Link href={"/dash"}>
+          
             <button className="grid w-full cursor-pointer select-none rounded-md border border-indigo-500 bg-indigo-500 py-2
              px-5 text-center align-middle text-sm text-white shadow hover:border-indigo-600 hover:bg-indigo-600 hover:text-white
               focus:border-indigo-600 focus:bg-indigo-600 focus:text-white focus:shadow-none" >Sign in</button>
-            </Link>
+            
            
           </div>
         </form>
